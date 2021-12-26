@@ -25,7 +25,7 @@ Send regular random tweets, from a predefined list
     * **Add a trigger**
       * Eventbridge - Create a new rule 
         * Schedule
-        * Cron expression (eg `45 19 * * ? *` for every day at 7.45pm :clock745:)
+        * Cron expression (eg `30 19 * * ? *` for every day at 7.30pm :clock730: )
         * Target - your lambda function
         * Configure input with [JSON constant](#json-input) 
 
