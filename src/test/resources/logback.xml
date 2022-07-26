@@ -1,6 +1,6 @@
 <configuration>
 
-    <!-- debug level fpr org.apache.http.wire logs the aws secrets. beware! -->
+    <!-- debug level fpr org.apache.http.wire logs aws secrets. beware! -->
     <logger name="org.apache" level="WARN" />
     <logger name="httpclient" level="WARN" />
 

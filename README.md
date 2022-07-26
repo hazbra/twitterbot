@@ -18,8 +18,18 @@ Send regular random tweets, from a predefined list
 * AWS account 
     * **Create a lambda function**
       * Runtime: :older_woman: :floppy_disk: Java 8 Amazon Linux 2
-      * Handler: `com.bot.demo.TwitterBot::tweetQuotes`
-      * Architecture: x86_64  
+      * Handler: `com.bot.demo.functions.TwitterBot::tweetQuotes`
+      * Architecture: x86_64 
+    * **Create a secret**
+      * Store your Twitter Keys via AWS Secrets Manager
+    ```json
+      {
+        "API_KEY": "YOUR_API_KEY",
+        "ACCESS_TOKEN": "YOUR_ACCESS_TOKEN",
+        "API_SECRET_KEY": "YOUR_API_SECRET_KEY",
+        "ACCESS_TOKEN_SECRET": "YOUR_ACCESS_TOKEN_SECRET"
+      }
+    ```
     * [Upload the jar](#build)
     * Try a test event with [JSON event document below](#json-input) 
     * **Add a trigger**
@@ -40,17 +50,25 @@ Tests are borrowed from [aws examples](https://github.com/awsdocs/aws-lambda-dev
 :exclamation: Note: this uses your real access tokens and will send an actual tweet  #sorrynotsorry
 
 ```bash
-mvn clean install -DACCESS_TOKEN=YOUR_ACCESS_TOKEN -DACCESS_TOKEN_SECRET=YOUR_ACCESS_TOKEN_SECRET -DAPI_KEY=YOUR_API_KEY -DAPI_SECRET_KEY=YOUR_API_SECRET_KEY -DUSER_ID=YOUR_USER_ID
+mvn clean install -DUSER_ID=YOUR_USER_ID -DREGION=YOUR_CLOUD_REGION -DSECRET_NAME=YOUR_CLOUD_SECRET_MANAGER_NAME
 ```
+## Run Application
 
+You can also run the Spring Boot application and test via curl
+
+```bash
+ curl localhost:8080/twitterBot -H "Content-Type: text/plain" -d '{"USER_ID": "YOUR_USER_ID", "SECRET_NAME": "YOUR_SECRET_NAME", "REGION": "YOUR_CLOUD_REGION"}'
+```
+### Sample Response
+```bash 
+Tweet: Here's looking at you, kid.
+```
 ## Json Input
 
 ```json
 {
-    "API_KEY": "YOUR_API_KEY", 
-    "ACCESS_TOKEN": "YOUR_ACCESS_TOKEN", 
-    "API_SECRET_KEY": "YOUR_API_SECRET_KEY",
-    "ACCESS_TOKEN_SECRET": "YOUR_ACCESS_TOKEN_SECRET",
+    "REGION": "YOUR_CLOUD_REGION",
+    "SECRET_NAME": "YOUR_SECRET_NAME",
     "USER_ID": "YOUR_USER_ID"
 }
 ```
