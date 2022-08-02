@@ -13,7 +13,7 @@ import io.github.redouane59.twitter.signature.TwitterCredentials;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
@@ -26,7 +26,7 @@ public class TwitterBot implements Function<Map<String, String>, String> {
 
     private static final Random random = new Random();
 
-    String quotesFile = "src/main/resources/tweets.txt";
+    String quotesFile = "tweets.txt";
 
     @Override
     public String apply(Map<String, String> input) {

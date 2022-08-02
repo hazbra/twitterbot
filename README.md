@@ -18,7 +18,7 @@ Send regular random tweets, from a predefined list
 * AWS account 
     * **Create a lambda function**
       * Runtime: :older_woman: :floppy_disk: Java 8 Amazon Linux 2
-      * Handler: `com.bot.demo.functions.TwitterBot::tweetQuotes`
+      * Handler: `com.bot.demo.functions.TwitterBot::apply`
       * Architecture: x86_64 
     * **Create a secret**
       * Store your Twitter Keys via AWS Secrets Manager
